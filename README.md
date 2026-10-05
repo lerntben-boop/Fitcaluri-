@@ -1,44 +1,44 @@
 # DragonFuel 🐉
 
-Kostenlose, eigenständige Fitness- und Ernährungs-App mit eigenem Design.
+DragonFuel ist eine eigenständige Fitness- und Ernährungs-App mit eigenem Design.
 
-## Aktueller Stand
+## App-Funktionen
 - 1.000+ Lebensmittel-Einträge als Entwicklungsdatenbank
 - Suche, Kategorien, Favoriten und Gramm-basierte Berechnung
 - Mahlzeiten speichern und Tagesübersicht
 - Wassertracking
 - Trainingspläne mit Timer
 - Statistikansicht
-- mobile-first PWA-Struktur
+- mobile-first React/Vite-Oberfläche
 - Foto-Tracking-Oberfläche mit optionalem KI-Backend
+- **Android-App-Build über Capacitor + GitHub Actions**
 
-## Lokal starten
+## Android-App
+
+Das Projekt kann über Capacitor als echte Android-App gebaut werden.
 
 ```bash
 npm install
-npm run dev
-```
-
-Für einen Produktionsbuild:
-
-```bash
 npm run build
+npx cap add android
+npx cap sync android
+cd android
+./gradlew assembleDebug
 ```
 
-## Deployment über GitHub
+Die fertige Debug-APK liegt anschließend unter:
+`android/app/build/outputs/apk/debug/app-debug.apk`
 
-Das Projekt ist für ein Git-basiertes Vite-Deployment vorbereitet. Der einfachste Weg ist, dieses Repository bei einem Hosting-Anbieter mit GitHub-Import zu verbinden.
+Alternativ startet der Workflow `.github/workflows/android.yml` den APK-Build automatisch bei einem Push auf den DragonFuel-Branch. Die APK wird als GitHub Actions Artifact bereitgestellt.
 
-Build-Befehl: `npm run build`
-Output: `dist`
-Framework: Vite
+## Foto-Tracking
 
-Die Datei `api/analyze-food.ts` ist als serverseitige Funktion vorbereitet. Für echtes KI-Foto-Tracking muss im Deployment sicher ein `OPENAI_API_KEY` als Secret gesetzt werden. Der Schlüssel darf nicht in GitHub committed werden.
+`api/analyze-food.ts` ist als serverseitige Funktion vorbereitet. Für echtes KI-Foto-Tracking muss im Deployment sicher ein `OPENAI_API_KEY` als Secret gesetzt werden. Der Schlüssel darf niemals in GitHub committed werden.
 
-## Hinweis zur Lebensmitteldatenbank
+## Lebensmitteldatenbank
 
-Die Referenzdaten sind für die App-Entwicklung gedacht. Ein Teil der 1.000+ Einträge sind Näherungs-/Entwicklungswerte und sollten vor einer Veröffentlichung als medizinisch oder ernährungswissenschaftlich genaue Daten nicht ungeprüft verwendet werden.
+Die Referenzdaten sind für die App-Entwicklung gedacht. Ein Teil der 1.000+ Einträge sind Näherungs-/Entwicklungswerte und sollten vor einer Veröffentlichung nicht ungeprüft als exakte Ernährungsdaten verwendet werden.
 
-## Sicherheit und Datenschutz
+## Datenschutz
 
-Mahlzeiten, Favoriten, Wasser und Trainingsstatus werden aktuell lokal im Browser gespeichert. Es ist kein Benutzerkonto erforderlich.
+Mahlzeiten, Favoriten, Wasser und Trainingsstatus werden aktuell lokal im Browser bzw. in der App gespeichert. Es ist kein Benutzerkonto erforderlich.
