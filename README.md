@@ -2,19 +2,43 @@
 
 Kostenlose, eigenständige Fitness- und Ernährungs-App mit eigenem Design.
 
-## Funktionen der aktuellen Basis
-- 1.000+ Lebensmittel-Datenbank
-- Suche nach Lebensmittel/Kategorie
-- Gramm-basierte Kalorien- und Makroberechnung
-- Mahlzeiten hinzufügen und löschen
-- Tagesübersicht und Makros
-- Favoriten-/Produktstruktur vorbereitet
-- Foto-Tracking UI mit Kamera/Galerie-Auswahl
-- Training, Stats und Profil
-- Mobile-first React/Vite/TypeScript
+## Aktueller Stand
+- 1.000+ Lebensmittel-Einträge als Entwicklungsdatenbank
+- Suche, Kategorien, Favoriten und Gramm-basierte Berechnung
+- Mahlzeiten speichern und Tagesübersicht
+- Wassertracking
+- Trainingspläne mit Timer
+- Statistikansicht
+- mobile-first PWA-Struktur
+- Foto-Tracking-Oberfläche mit optionalem KI-Backend
 
-## Foto-Tracking
-Das Frontend kann Fotos aufnehmen/hochladen. Eine echte automatische Bildanalyse braucht einen Vision-Dienst bzw. ein Backend-Modell. Die Architektur ist dafür vorbereitet, ohne einen kostenpflichtigen API-Schlüssel fest einzubauen.
+## Lokal starten
 
-## Datenbank
-Die Basis enthält verifizierte Referenzwerte für zentrale Lebensmittel. Ein großer Teil der zusätzlichen Entwicklungs-Einträge ist ausdrücklich als Platzhalter/Richtwert markiert. Für eine echte Produktdatenbank soll als nächstes eine kostenlose offene Quelle wie Open Food Facts angebunden werden.
+```bash
+npm install
+npm run dev
+```
+
+Für einen Produktionsbuild:
+
+```bash
+npm run build
+```
+
+## Deployment über GitHub
+
+Das Projekt ist für ein Git-basiertes Vite-Deployment vorbereitet. Der einfachste Weg ist, dieses Repository bei einem Hosting-Anbieter mit GitHub-Import zu verbinden.
+
+Build-Befehl: `npm run build`
+Output: `dist`
+Framework: Vite
+
+Die Datei `api/analyze-food.ts` ist als serverseitige Funktion vorbereitet. Für echtes KI-Foto-Tracking muss im Deployment sicher ein `OPENAI_API_KEY` als Secret gesetzt werden. Der Schlüssel darf nicht in GitHub committed werden.
+
+## Hinweis zur Lebensmitteldatenbank
+
+Die Referenzdaten sind für die App-Entwicklung gedacht. Ein Teil der 1.000+ Einträge sind Näherungs-/Entwicklungswerte und sollten vor einer Veröffentlichung als medizinisch oder ernährungswissenschaftlich genaue Daten nicht ungeprüft verwendet werden.
+
+## Sicherheit und Datenschutz
+
+Mahlzeiten, Favoriten, Wasser und Trainingsstatus werden aktuell lokal im Browser gespeichert. Es ist kein Benutzerkonto erforderlich.
